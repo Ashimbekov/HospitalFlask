@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #443e45;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #loginForm, #patientsList {
+            max-width: 500px;
+            text-align: center;
+            padding: 30px;
+            background-color: #877d8d;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="password"], input[type="submit"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        input[type="submit"] {
+            background-color: #384b13;
+            color: #f6ffd1;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #5a701e;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: #877d8d;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .patient-name {
+            flex-grow: 1;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .view-link {
+            padding: 10px 20px;
+            background-color: #314a00;
+            color: #f6ffd1;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .view-link:hover {
+            background-color: #748500;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginForm">
+        <h2>Вход</h2>
+        <form id="login" action="#" method="post">
+            <label for="username">Имя пользователя:</label><br>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Пароль:</label><br>
+            <input type="password" id="password" name="password" required><br>
+            <input type="submit" value="Войти">
+        </form>
+    </div>
+
+    <div id="patientsList" style="display: none;">
+        <h2>Список ваших пациентов</h2>
+        <ul id="patients"></ul>
+    </div>
+
+    <script>
+        document.getElementById("login").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            if (username === "логин" && password === "пароль") {
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("patientsList").style.display = "block";
+                loadPatients();
+            } else {
+                alert("Неверное имя пользователя или пароль");
+            }
+        });
+
+        function loadPatients() {
+            let patients = [
+                { name: 'Денисенко Дмитрий Ильич    ', photo: 'Снимок экрана 2024-04-28 130001.png', id: 1 },
+                { name: 'Дмитриенко Денис Маринович   ', photo: 'photo_5224215455567303127_y.jpg', id: 2 },
+                { name: 'Дмитриенок Марина Дмитриевна   ', photo: 'photo_5224253131020425414_y.jpg', id: 3 }
+            ];
+            let patientsList = document.getElementById('patients');
+            patients.forEach(function(patient) {
+                let li = document.createElement('li');
+                let img = document.createElement('img');
+                img.setAttribute('src', patient.photo);
+                let span = document.createElement('span');
+                span.classList.add('patient-name');
+                span.textContent = patient.name;
+                let link = document.createElement('a');
+                link.setAttribute('href', 'patient.html?id=' + patient.id);
+                link.classList.add('view-link');
+                link.textContent = 'Просмотр';
+                li.appendChild(img);
+                li.appendChild(span);
+                li.appendChild(link);
+                patientsList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>

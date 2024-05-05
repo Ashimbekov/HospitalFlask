@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Персональная информация</title>
+</head>
+<body>
+    <div id="personalInfo" class="tab">
+        <h2>Персональная информация</h2>
+        <table>
+            <tr>
+                <th>Параметр</th>
+                <th>Значение</th>
+            </tr>
+            <tr>
+                <td>Имя</td>
+                <td>{{ data['name'] }}</td>
+            </tr>
+            <tr>
+                <td>Фамилия</td>
+                <td>{{ data['surname'] }}</td>
+            </tr>
+            <tr>
+                <td>Отчество</td>
+                <td>{{ data['patronymic'] }}</td>
+            </tr>
+            <tr>
+                <td>Пол</td>
+                <td>{{ data['gender'] }}</td>
+            </tr>
+            <tr>
+                <td>Дата рождения</td>
+                <td>{{ data['birthdate'] }}</td>
+            </tr>
+        </table>
+        <button>Редактировать</button>
+    </div>
+</body>
+</html>

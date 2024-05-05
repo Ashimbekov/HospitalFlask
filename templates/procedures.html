@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Процедуры</title>
+</head>
+<body>
+    <div id="procedures" class="tab">
+        <h2>Процедуры</h2>
+        <table>
+            <tr>
+                <th>Название процедуры</th>
+                <th>Начало процедуры</th>
+                <th>Конец процедуры</th>
+            </tr>
+            {% for procedure in data["procedures"] %}
+            <tr>
+                <td>{{ procedure[0] }}</td>
+                <td>{{ procedure[1] }}</td>
+                <td>{{ procedure[2] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button>Редактировать</button>
+    </div>
+</body>
+</html>

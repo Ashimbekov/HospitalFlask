@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контактная информация</title>
+</head>
+<body>
+    <div id="personalInfo" class="tab">
+        <h2>Контактная информация</h2>
+        <table>
+            <tr>
+                <th>Параметр</th>
+                <th>Значение</th>
+            </tr>
+            <tr>
+                <td>Телефон</td>
+                <td>{{ data['phone'] }}</td>
+            </tr>
+            <tr>
+                <td>Почта</td>
+                <td>{{ data['email'] }}</td>
+            </tr>
+        </table>
+        <button>Редактировать</button>
+    </div>
+</body>
+</html>

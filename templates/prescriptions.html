@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Препараты</title>
+</head>
+<body>
+    <div id="prescriptions" class="tab">
+        <h2>Препараты</h2>
+        <table>
+            <tr>
+                <th>Название препарата</th>
+                <th>Начало приёма</th>
+                <th>Конец приёма</th>
+                <th>Дозировка</th>
+            </tr>
+            {% for prescription in data["prescriptions"] %}
+            <tr>
+                <td>{{ prescription[0] }}</td>
+                <td>{{ prescription[1] }}</td>
+                <td>{{ prescription[2] }}</td>
+                <td>{{ prescription[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button>Редактировать</button>
+    </div>
+</body>
+</html>

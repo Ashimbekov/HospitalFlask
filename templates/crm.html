@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о пациенте</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #a497ac;
+        }
+
+        .header {
+            background-color: #665074;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+        }
+
+        h1, h2 {
+            font-size: 24px;
+        }
+
+        .tabs {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tabs button {
+            background-color: #867097;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+            margin: 0 5px;
+        }
+
+        .tabs button:hover {
+            background-color: #a394b7;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .tab.active {
+            display: block;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #646464;
+        }
+
+        th {
+            background-color:rgb(145, 131, 154);
+;
+        }
+
+        .editButton {
+            background-color: #769729;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .editButton:hover {
+            background-color: #9ac44d;
+        }
+
+        .sectionHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="1.jpg" alt="Фото пациента">
+        <h1>Дмитриенко Денис Маринович</h1>
+    </div>
+
+    <div class="tabs">
+        <button class="tabButton" onclick="openTab('personalInfo')">Персональная информация</button>
+        <button class="tabButton" onclick="openTab('contactInfo')">Контактная информация</button>
+        <button class="tabButton" onclick="openTab('medicalHistory')">Контактные лица</button>
+        <button class="tabButton" onclick="openTab('med')">препараты</button>
+        <button class="tabButton" onclick="openTab('med')">процедуры</button>
+        <button class="tabButton" onclick="openTab('dig')">Диагнозы</button>
+        <button class="tabButton" onclick="openTab('med')">личное дело</button>
+        <button class="tabButton" onclick="openTab('med')">протокол лечения</button>
+    </div>
+
+    <div id="personalInfo" class="tab">
+        <h2>Персональная информация</h2>
+       
+        <table>
+            <tr>
+                <th>Параметр</th>
+                <th>Значение</th>
+            </tr>
+            <tr>
+                <td>Имя</td>
+                <td>Денис</td>
+            </tr>
+            <tr>
+                <td>Фамилия</td>
+                <td>Дмитриенко</td>
+            </tr>
+            <tr>
+                <td>Отчество</td>
+                <td>Маринович</td>
+            </tr>
+            <tr>
+                <td>Пол</td>
+                <td>М</td>
+            </tr>
+            <tr>
+                <td>Дата рождения</td>
+                <td>2004-10-09</td>
+            </tr>
+        </table>
+
+         <button class="editButton" onclick="editSection('personalInfo')">Редактировать</button>
+    </div>
+
+    <div id="contactInfo" class="tab">
+        <h2>Контактная информация</h2>
+        
+        <table>
+            <tr>
+                <th>Параметр</th>
+                <th>Значение</th>
+            </tr>
+            <tr>
+                <td>Телефон</td>
+                <td>987-654-321</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>denis@example.com</td>
+            </tr>
+           
+        </table>
+
+        <button class="editButton" onclick="editSection('contactInfo')">Редактировать</button>
+    </div>
+
+    <div id="medicalHistory" class="tab">
+        <h2>Контактные лица</h2>
+        
+        <table>
+            <tr>
+                <th>Параметр</th>
+                <th>Значение</th>
+            </tr>
+            <tr>
+                <td>Имя</td>
+                <td>Ольга</td>
+            </tr>
+            <tr>
+                <td>Фамилия</td>
+                <td>Дмитриенко</td>
+            </tr>
+            <tr>
+                <td>Отчество</td>
+                <td>Дмитриевна</td>
+            </tr>
+            <tr>
+                <td>Пол</td>
+                <td>Ж</td>
+            </tr>
+            <tr>
+                <td>Телефон</td>
+                <td>444-555-666
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>olga@example.com</td>
+            </tr>
+        </table>
+
+        <button class="editButton" onclick="editSection('medicalHistory')">Редактировать</button>
+    </div>
+
+    <div id="dig" class="tab">
+        <h2>Медицинская история</h2>
+        
+        <table>
+            <tr>
+                <th>Параметр</th>
+                <th>Значение</th>
+            </tr>
+            <tr>
+                <td>Диагноз</td>
+                <td>F44.8 Диссоциативное расстройство идентичности
+                </td>
+            </tr>
+            <tr>
+                <td>Диагноз</td>
+                <td>F63.8 Другие расстройства привычек и влечений
+                </td>
+            </tr>
+            <tr>
+                <td>Диагноз</td>
+                <td>F51.2 Расстройство режима сна и бодрствования неорганической этиологии
+                </td>
+            </tr>
+        </table>
+
+        <button class="editButton" onclick="editSection('med')">Редактировать</button>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            let tabs = document.querySelectorAll('.tab');
+            tabs.forEach(function(tab) {
+                if (tab.id === tabName) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            let buttons = document.querySelectorAll('.tabButton');
+            buttons.forEach(function(button) {
+                if (button.textContent === tabName) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+
+        function editSection(sectionId) {
+            let section = document.getElementById(sectionId);
+            let rows = section.querySelectorAll('tr');
+            rows.forEach(function(row) {
+                let cells = row.querySelectorAll('td');
+                cells.forEach(function(cell, index) {
+                    if (index === 1) {
+                        let value = cell.textContent;
+                        cell.innerHTML = '<input type="text" value="' + value + '">';
+                    }
+                });
+            });
+
+            let editButton = document.querySelector('#' + sectionId + ' .editButton');
+            editButton.textContent = 'Сохранить';
+            editButton.setAttribute('onclick', 'saveSection(\'' + sectionId + '\')');
+        }
+    </script>
+    <script>
+        function openTab(tabName) {
+            let tabs = document.querySelectorAll('.tab');
+            tabs.forEach(function(tab) {
+                if (tab.id === tabName) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+    
+            let buttons = document.querySelectorAll('.tabButton');
+            buttons.forEach(function(button) {
+                if (button.textContent === tabName) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+    
+        function editSection(sectionId) {
+            let section = document.getElementById(sectionId);
+            let rows = section.querySelectorAll('tr');
+            rows.forEach(function(row) {
+                let cells = row.querySelectorAll('td');
+                cells.forEach(function(cell, index) {
+                    if (index === 1) {
+                        let value = cell.textContent;
+                        cell.innerHTML = '<input type="text" value="' + value + '">';
+                    }
+                });
+            });
+    
+            let editButton = document.querySelector('#' + sectionId + ' .editButton');
+            editButton.textContent = 'Сохранить';
+            editButton.setAttribute('onclick', 'saveSection(\'' + sectionId + '\')');
+        }
+    
+        function saveSection(sectionId) {
+            let section = document.getElementById(sectionId);
+            let rows = section.querySelectorAll('tr');
+            rows.forEach(function(row) {
+                let cells = row.querySelectorAll('td');
+                cells.forEach(function(cell, index) {
+                    if (index === 1) {
+                        let newValue = cell.querySelector('input').value;
+                        cell.innerHTML = newValue;
+                    }
+                });
+            });
+    
+            let editButton = document.querySelector('#' + sectionId + ' .editButton');
+            editButton.textContent = 'Редактировать';
+            editButton.setAttribute('onclick', 'editSection(\'' + sectionId + '\')');
+        }
+    </script>
+    
+</body>
+</html>
