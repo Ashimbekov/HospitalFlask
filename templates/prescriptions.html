@@ -14,6 +14,7 @@
                 <th>Начало приёма</th>
                 <th>Конец приёма</th>
                 <th>Дозировка</th>
+                <th>Действия</th>
             </tr>
             {% for prescription in data["prescriptions"] %}
             <tr>
@@ -21,10 +22,50 @@
                 <td>{{ prescription[1] }}</td>
                 <td>{{ prescription[2] }}</td>
                 <td>{{ prescription[3] }}</td>
+                <td><button class="editBtn">Редактировать</button></td>
             </tr>
             {% endfor %}
         </table>
-        <button>Редактировать</button>
+        <button id="addBtn">Добавить</button>
+    
+        <form method="POST" action="/patient/{{ data['patient_id'] }}/prescriptions/edit_prescription" class="editForm" style="display: none;">
+            <input type="hidden" name="prescription_id" value="{{ data['prescriptions'][0] }}">
+            <input type="text" name="prescription_name" value="{{ data['prescriptions'][1] }}" placeholder="Название препарата">
+            <input type="date" name="start_date" value="{{ data['prescriptions'][2] }}" placeholder="Начало приёма">
+            <input type="date" name="end_date" value="{{ data['prescriptions'][3] }}" placeholder="Конец приёма">
+            <input type="text" name="dosage" value="{{ data['prescriptions'][4] }}" placeholder="Дозировка">
+
+            <button type="submit">Сохранить</button>
+        </form>
+
+        TODO: Добвить add prescription в код
+        <form method="POST" action="/add_prescription" class="addForm" style="display: none;">
+            <input type="text" name="new_prescription_name" placeholder="Название препарата">
+            <input type="date" name="new_start_date" placeholder="Начало приёма">
+            <input type="date" name="new_end_date" placeholder="Конец приёма">
+            <input type="text" name="new_dosage" placeholder="Дозировка">
+            <button type="submit">Добавить</button>
+        </form>
+
     </div>
+    
+    <script>
+        var editButtons = document.querySelectorAll('.editBtn');
+    
+        editButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var editForm = button.closest('.tab').querySelector('.editForm');
+                editForm.style.display = 'block';
+            });
+        });
+    
+        var addBtn = document.getElementById('addBtn');
+        var addForm = document.querySelector('.addForm');
+    
+        addBtn.addEventListener('click', function() {
+            addForm.style.display = 'block';
+        });
+    </script>
+    
 </body>
 </html>

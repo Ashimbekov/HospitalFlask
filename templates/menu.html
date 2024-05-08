@@ -4,16 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #cc39b3;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .buttons a:hover {
+            background-color: #b845ae;
+        }
+    </style>
 </head>
 <body>
-    <ul>
-        <li><a href="/patient/{{ patient[0] }}/personal_info">Персональная информация</a></li>
-        <li><a href="/patient/{{ patient[0] }}/contact">Контактные лица</a></li>
-        <li><a href="/patient/{{ patient[0] }}/prescriptions">Препараты</a></li>
-        <li><a href="/patient/{{ patient[0] }}/procedures">Процедуры</a></li>
-        <li><a href="/patient/{{ patient[0] }}/diagnosis">Диагнозы</a></li>
-
-      </ul>
-
+    <div class="buttons">
+        <a href="/patient/{{ patient[0] }}/personal_info">Персональная информация</a>
+        <a href="/patient/{{ patient[0] }}/contact">Контактные лица</a>
+        <a href="/patient/{{ patient[0] }}/prescriptions">Препараты</a>
+        <a href="/patient/{{ patient[0] }}/procedures">Процедуры</a>
+        <a href="/patient/{{ patient[0] }}/diagnosis">Диагнозы</a>
+    </div>
 </body>
 </html>

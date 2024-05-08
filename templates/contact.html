@@ -4,6 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контактная информация</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.tab {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+td input[type="text"],
+td input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #cc39b3;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b845ae;
+}
+
+a.button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #cc39b3;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+a.button:hover {
+    background-color: #b845ae;
+}
+
+a.button:focus {
+    outline: none;
+}
+
+a.button:active {
+    background-color: #b845ae;
+}
+    </style>
 </head>
 <body>
     <div id="personalInfo" class="tab">
@@ -22,7 +105,31 @@
                 <td>{{ data['email'] }}</td>
             </tr>
         </table>
-        <button>Редактировать</button>
+        <button id="editButton">Редактировать</button>
+    <form method="POST" action="/patient/{{ data['patient_id'] }}/edit_contact" id="editForm" style="display: none;">
+        <table>
+            <tr>
+                <th>Параметр</th>
+                <th>Новое значение</th>
+            </tr>
+            <tr>
+                <td>Телефон</td>
+                <td><input type="text" name="phone" value="{{ data['phone'] }}"></td>
+            </tr>
+            <tr>
+                <td>Почта</td>
+                <td><input type="email" name="email" value="{{ data['email'] }}"></td>
+            </tr>
+        </table>
+        <button type="submit">Сохранить</button>
+    </form>
+    <a href="/patient/{{ data['patient_id'] }}" class="button">Назад</a>
     </div>
+    <script>
+        document.getElementById("editButton").addEventListener("click", function() {
+            var form = document.getElementById("editForm");
+            form.style.display = "block";
+        });
+    </script>
 </body>
 </html>
