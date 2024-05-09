@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Prescription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="date"],
+        input[type="text"],
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #cc39b3;
+            color: white;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #b845ae;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Изменить препарат</h1>
+        <form action="/patient/{{ patient_id }}/prescriptions/{{ prescription_id }}/update" method="POST">
+            <label for="start_date">Начало приёма:</label><br>
+            <input type="date" id="start_date" name="start_date" value="{{ prescription[1] }}"><br>
+            <label for="end_date">Конец приёма:</label><br>
+            <input type="date" id="end_date" name="end_date" value="{{ prescription[2] }}"><br>
+            <label for="dosage">Дозировка:</label><br>
+            <input type="text" id="dosage" name="dosage" value="{{ prescription[3] }}"><br>
+            <button type="submit">Сохранить изменения</button>
+        </form>
+    </div>
+</body>
+</html>

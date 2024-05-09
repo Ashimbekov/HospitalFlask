@@ -4,6 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Процедуры</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    min-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tab {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+td input[type="text"],
+td input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #cc39b3;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b845ae;
+}
+
+a.button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #cc39b3;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+a.button:hover {
+    background-color: #b845ae;
+}
+
+a.button:focus {
+    outline: none;
+}
+
+a.button:active {
+    background-color: #b845ae;
+}
+    </style>
 </head>
 <body>
     <div id="procedures" class="tab">
@@ -13,16 +102,32 @@
                 <th>Название процедуры</th>
                 <th>Начало процедуры</th>
                 <th>Конец процедуры</th>
+                <th>Действия</th> <!-- Новый столбец для кнопок -->
             </tr>
             {% for procedure in data["procedures"] %}
             <tr>
-                <td>{{ procedure[0] }}</td>
                 <td>{{ procedure[1] }}</td>
                 <td>{{ procedure[2] }}</td>
+                <td>{{ procedure[3] }}</td>
+                <td>
+                    <!-- Кнопка Редактировать -->
+                    <form action="/patient/{{ data['patient_id'] }}/procedures/{{ procedure[0][1] }}/edit" method="GET">
+                        <button style="margin-bottom: 20px;" type="submit">Редактировать</button>
+                    </form>
+                    <!-- Кнопка Удалить -->
+                    <form action="/patient/{{ data['patient_id'] }}/procedures/{{ procedure[0][1] }}/delete" method="POST">
+                        <button type="submit">Удалить</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </table>
-        <button>Редактировать</button>
+        <!-- Кнопка Добавить -->
+        <form action="/patient/{{ data['patient_id'] }}/procedures/add" method="GET">
+            <button type="submit">Добавить</button>
+        </form>
+        <a href="/patient/{{ data['patient_id'] }}" class="button">Назад</a>
     </div>
+    
 </body>
 </html>

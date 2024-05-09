@@ -17,11 +17,14 @@
     color: #fff;
     padding: 20px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     margin-bottom: 10px;
 }
@@ -29,13 +32,33 @@
 .header h1 {
     margin: 0;
 }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #cc39b3;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .buttons a:hover {
+            background-color: #b845ae;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <img src="1.jpg" alt="Фото пациента">
+        <img src="{{ patient_img[2] }}" alt="Фото пациента">
         <h1>{{ patient[1] }} {{ patient[2] }} {{ patient[3] }}</h1>
     </div>
     {% include 'menu.html' %}
+    
 </body>
 </html>

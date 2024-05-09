@@ -3,14 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Препараты</title>
+    <title>Prescriptions</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    min-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tab {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+td input[type="text"],
+td input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #cc39b3;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b845ae;
+}
+
+a.button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #cc39b3;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+a.button:hover {
+    background-color: #b845ae;
+}
+
+a.button:focus {
+    outline: none;
+}
+
+a.button:active {
+    background-color: #b845ae;
+}
+    </style>
 </head>
 <body>
-    <div id="prescriptions" class="tab">
-        <h2>Препараты</h2>
+    <div class="tab">
+        <h1>Препараты</h1>
         <table>
             <tr>
-                <th>Название препарата</th>
+                <th>Препарат</th>
                 <th>Начало приёма</th>
                 <th>Конец приёма</th>
                 <th>Дозировка</th>
@@ -22,50 +111,17 @@
                 <td>{{ prescription[1] }}</td>
                 <td>{{ prescription[2] }}</td>
                 <td>{{ prescription[3] }}</td>
-                <td><button class="editBtn">Редактировать</button></td>
+                <td>
+                    <a class="button" style="margin-bottom: 20px;" href="/patient/{{ data['patient_id'] }}/prescriptions/{{ loop.index }}/edit">Редактировать</a>
+                    <form action="/patient/{{ data['patient_id'] }}/prescriptions/{{ loop.index }}/delete" method="post">
+                        <button type="submit">Удалить</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </table>
-        <button id="addBtn">Добавить</button>
-    
-        <form method="POST" action="/patient/{{ data['patient_id'] }}/prescriptions/edit_prescription" class="editForm" style="display: none;">
-            <input type="hidden" name="prescription_id" value="{{ data['prescriptions'][0] }}">
-            <input type="text" name="prescription_name" value="{{ data['prescriptions'][1] }}" placeholder="Название препарата">
-            <input type="date" name="start_date" value="{{ data['prescriptions'][2] }}" placeholder="Начало приёма">
-            <input type="date" name="end_date" value="{{ data['prescriptions'][3] }}" placeholder="Конец приёма">
-            <input type="text" name="dosage" value="{{ data['prescriptions'][4] }}" placeholder="Дозировка">
-
-            <button type="submit">Сохранить</button>
-        </form>
-
-        TODO: Добвить add prescription в код
-        <form method="POST" action="/add_prescription" class="addForm" style="display: none;">
-            <input type="text" name="new_prescription_name" placeholder="Название препарата">
-            <input type="date" name="new_start_date" placeholder="Начало приёма">
-            <input type="date" name="new_end_date" placeholder="Конец приёма">
-            <input type="text" name="new_dosage" placeholder="Дозировка">
-            <button type="submit">Добавить</button>
-        </form>
-
+        <a href="/patient/{{ data['patient_id'] }}/prescriptions/add" class="button">Добавить препарат</a>
+        <a href="/patient/{{ data['patient_id'] }}" class="button">Назад</a>
     </div>
-    
-    <script>
-        var editButtons = document.querySelectorAll('.editBtn');
-    
-        editButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                var editForm = button.closest('.tab').querySelector('.editForm');
-                editForm.style.display = 'block';
-            });
-        });
-    
-        var addBtn = document.getElementById('addBtn');
-        var addForm = document.querySelector('.addForm');
-    
-        addBtn.addEventListener('click', function() {
-            addForm.style.display = 'block';
-        });
-    </script>
-    
 </body>
 </html>

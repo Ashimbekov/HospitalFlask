@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Prescription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        select,
+        input[type="date"],
+        input[type="text"],
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #cc39b3;
+            color: white;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #b845ae;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Добавить препарат</h1>
+    <form action="/patient/{{ data['patient_id'] }}/prescriptions/create" method="post">
+        <label for="medicine">Препарат:</label>
+        <select id="medicine" name="medicine" required>
+            {% for med_id, med_name in data["medicines"] %}
+                <option value="{{ med_id }}">{{ med_name }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="start_date">Начало приёма:</label>
+        <input type="date" id="start_date" name="start_date" required><br>
+        <label for="end_date">Конец приёма:</label>
+        <input type="date" id="end_date" name="end_date" required><br>
+        <label for="dosage">Дозировка:</label>
+        <input type="text" id="dosage" name="dosage" required><br>
+        <button type="submit">Добавить</button>
+    </form>
+    </div>
+</body>
+</html>
